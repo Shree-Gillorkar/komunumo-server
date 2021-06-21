@@ -20,7 +20,11 @@ package org.komunumo.util;
 
 import com.vaadin.componentfactory.EnhancedDatePicker;
 
+import com.vaadin.componentfactory.EnhancedDateTimePicker;
+
 import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +35,18 @@ public class ComponentUtil {
         final var picker = new EnhancedDatePicker(label);
         picker.setPattern("yyyy-MM-dd");
         picker.setI18n(new LocalizedEnhancedDatePickerI18NProvider());
+        picker.setWeekNumbersVisible(true);
+        if (value != null) {
+            picker.setValue(value);
+        }
+        return picker;
+    }
+
+    public static EnhancedDateTimePicker createDateTimePicker(@NotNull final String label, @Nullable final LocalDateTime value) {
+        final var picker = new EnhancedDateTimePicker(label);
+        picker.setDatePattern("yyyy-MM-dd");
+        picker.setTimePattern("HH:mm");
+        picker.setDatePickerI18n(new LocalizedEnhancedDatePickerI18NProvider());
         picker.setWeekNumbersVisible(true);
         if (value != null) {
             picker.setValue(value);
